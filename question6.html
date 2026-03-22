@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Famous Quote App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    #quote-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    #quote-text {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #333;
+    }
+
+    #quote-author {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #666;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="quote-box">
+    <p id="quote-text"></p>
+    <p id="quote-author"></p>
+  </div>
+
+  <button id="quote-btn">Click me to get a famous quote</button>
+
+  <script>
+    const quotes = [
+      { text: "It's not who I am underneath, but what I do that defines me.", author: "Batman" },
+      { text: "With great power comes great responsibility.", author: "Spider-Man" },
+      { text: "I am not afraid. I am the man without fear.", author: "Daredevil" },
+      { text: "I am vengeance. I am the night. I am Batman.", author: "Absolute Batman" },
+      { text: "There is no problem that cannot be solved with the proper application of intellect.", author: "Reed Richards" },
+      { text: "I have no enemies. I don't allow such a thing.", author: "Thorfinn — Vinland Saga" },
+      { text: "Once you decide to fight for something, win. That is all.", author: "Miyamoto Musashi — Vagabond" },
+      { text: "Abandon your fear. Look forward. Move forward and never stop. You'll age if you pull back. You'll die if you hesitate.", author: "Ichigo Kurosaki — Bleach" },
+      { text: "Spin spin spin! If you keep spinning, you just might drill through to a new world!", author: "Gyro Zeppeli — JoJo's Bizarre Adventure" },
+      { text: "Only those who have suffered long, can see the light within the shadows.", author: "Roronoa Zoro — One Piece" }
+    ];
+
+    const btn = document.getElementById("quote-btn");
+    const quoteBox = document.getElementById("quote-box");
+    const quoteText = document.getElementById("quote-text");
+    const quoteAuthor = document.getElementById("quote-author");
+
+    let lastIndex = -1;
+
+    btn.addEventListener("click", function() {
+      let randomIndex;
+
+      do {
+        randomIndex = Math.floor(Math.random() * quotes.length);
+      } while (randomIndex === lastIndex);
+
+      lastIndex = randomIndex;
+
+      const selectedQuote = quotes[randomIndex];
+
+      quoteText.textContent = '"' + selectedQuote.text + '"';
+      quoteAuthor.textContent = "— " + selectedQuote.author;
+
+      quoteBox.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
